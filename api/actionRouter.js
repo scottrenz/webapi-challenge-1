@@ -27,8 +27,8 @@ console.log('action post',req.body)
     .then(action => {
       res.status(201).json(action);
     })
-    .catch(error => console.log(error));
-    // .catch(error => next(error));
+    // .catch(error => console.log(error));
+    .catch(error => next(error));
 });
 
 router.use(errorHandler);
