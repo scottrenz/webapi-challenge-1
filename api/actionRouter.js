@@ -42,6 +42,24 @@ router.put('/actions', (req, res, next) => {
       .catch(error => next(error));
   });
     
+// DELETE /api/actions
+router.delete('/actions/:id', (req, res) => {
+  const id = req.url.substring(req.url.lastIndexOf(":")+1).replace('/api','').replace('/actions','').replace('/','')
+  console.log('url',req.url)
+  console.log('id',id)
+  Actions.get(id)
+  .then(response => {
+     Actions.remove(id)
+     .then(result => {
+         // console.log('deleted title '+id)
+       res.status(200).json(response);
+     })
+     .catch(error => next(error));
+     
+     })
+     .catch(error => next(error));
+    })
+
 router.use(errorHandler);
 
 function errorHandler(error, req, res, next) {
