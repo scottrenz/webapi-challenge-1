@@ -20,7 +20,7 @@ router.get('/projects', (req, res, next) => {
     .catch(error => next(error));
 });
 
-// POST /api/shouts
+// POST /api/projects
 router.post('/projects', (req, res, next) => {
   Projects.insert(req.body)
     .then(project => {

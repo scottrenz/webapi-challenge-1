@@ -22,15 +22,26 @@ router.get('/actions', (req, res, next) => {
 
 // POST /api/actions
 router.post('/actions', (req, res, next) => {
-console.log('action post',req.body)
-  Actions.insert(req.body)
-    .then(action => {
-      res.status(201).json(action);
-    })
-    // .catch(error => console.log(error));
-    .catch(error => next(error));
-});
+  console.log('action post',req.body)
+    Actions.insert(req.body)
+      .then(action => {
+        res.status(201).json(action);
+      })
+      // .catch(error => console.log(error));
+      .catch(error => next(error));
+  });
 
+// PUT /api/actions
+router.put('/actions', (req, res, next) => {
+  console.log('action put',req.body)
+    Actions.update(req.body.id,req.body)
+      .then(action => {
+        res.status(201).json(action);
+      })
+      // .catch(error => console.log(error));
+      .catch(error => next(error));
+  });
+    
 router.use(errorHandler);
 
 function errorHandler(error, req, res, next) {
