@@ -29,6 +29,36 @@ router.post('/projects', (req, res, next) => {
     .catch(error => next(error));
 });
 
+// PUT /api/actions
+router.put('/projects', (req, res, next) => {
+  console.log('project put',req.body)
+    Projects.update(req.body.id,req.body)
+      .then(project => {
+        res.status(201).json(project);
+      })
+      // .catch(error => console.log(error));
+      .catch(error => next(error));
+  });
+    
+// DELETE /api/actions
+router.delete('/projects/:id', (req, res) => {
+  const id = req.url.substring(req.url.lastIndexOf(":")+1).replace('/api','').replace('/projects','').replace('/','')
+  console.log('url',req.url)
+  console.log('id',id)
+  Projects.get(id)
+  .then(response => {
+     Projects.remove(id)
+     .then(result => {
+         // console.log('deleted title '+id)
+       res.status(200).json(response);
+     })
+     .catch(error => next(error));
+     
+     })
+     .catch(error => next(error));
+    })
+
+
 router.use(errorHandler);
 
 function errorHandler(error, req, res, next) {
