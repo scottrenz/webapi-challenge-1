@@ -20,6 +20,16 @@ router.get('/projects', (req, res, next) => {
     .catch(error => next(error));
 });
 
+// GET /api/projects/actions/:id
+router.get('/projects/actions/:id', (req, res, next) => {
+  const id = req.url.substring(req.url.lastIndexOf(":")+1).replace('/api','').replace('/projects','').replace('/actions','').replace('/','')
+  Projects.getProjectActions(id)
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(error => next(error));
+});
+
 // POST /api/projects
 router.post('/projects', (req, res, next) => {
   Projects.insert(req.body)
