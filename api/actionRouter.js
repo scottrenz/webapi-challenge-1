@@ -22,11 +22,13 @@ router.get('/actions', (req, res, next) => {
 
 // POST /api/actions
 router.post('/actions', (req, res, next) => {
+console.log('action post',req.body)
   Actions.insert(req.body)
     .then(action => {
       res.status(201).json(action);
     })
-    .catch(error => next(error));
+    .catch(error => console.log(error));
+    // .catch(error => next(error));
 });
 
 router.use(errorHandler);
