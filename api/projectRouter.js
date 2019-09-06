@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 // GET /api/projects
 router.get('/projects', (req, res, next) => {
-  Shouts.find()
+  Projects.get()
     .then(projects => {
       res.status(200).json(projects);
     })
@@ -22,7 +22,7 @@ router.get('/projects', (req, res, next) => {
 
 // POST /api/shouts
 router.post('/projects', (req, res, next) => {
-  Shouts.add(req.body)
+  Projects.insert(req.body)
     .then(project => {
       res.status(201).json(project);
     })

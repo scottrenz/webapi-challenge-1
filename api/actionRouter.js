@@ -1,6 +1,6 @@
 const express = require('express');
 
-const Projects = require('../data/helpers/actionModel');
+const Actions = require('../data/helpers/actionModel');
 
 const router = express.Router();
 
@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 
 // GET /api/actions
 router.get('/actions', (req, res, next) => {
-  Shouts.find()
+  Actions.get()
     .then(actions => {
       res.status(200).json(actions);
     })
@@ -22,7 +22,7 @@ router.get('/actions', (req, res, next) => {
 
 // POST /api/actions
 router.post('/actions', (req, res, next) => {
-  Shouts.add(req.body)
+  Actions.insert(req.body)
     .then(action => {
       res.status(201).json(action);
     })
